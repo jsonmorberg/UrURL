@@ -2,12 +2,14 @@ package com.jsonmorberg.ururl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-public class UrurlApplication {
+@EnableScheduling
+public class UrUrlApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UrurlApplication.class, args);
+		SpringApplication.run(UrUrlApplication.class, args);
 	}
 
 }
