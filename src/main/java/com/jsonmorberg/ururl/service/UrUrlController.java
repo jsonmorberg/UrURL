@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/urls")
+@RequestMapping("/")
 public class UrUrlController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class UrUrlController {
             }
             // Increment click count when the URL is being accessed
             urlService.incrementClickCount(shortUrl);
-            return ResponseEntity.status(302).location(URI.create(url.getOriginalUrl())).build(); // Redirect to the original URL
+            return ResponseEntity.status(302).location(URI.create(url.getOriginalUrl())).build();
         } else {
             return ResponseEntity.status(404).body("Short URL not found");
         }

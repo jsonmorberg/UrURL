@@ -2,6 +2,7 @@ package com.jsonmorberg.ururl.service;
 
 import com.jsonmorberg.ururl.model.Url;
 import com.jsonmorberg.ururl.model.UrlRepository;
+import com.jsonmorberg.ururl.utils.UrlHashGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,12 @@ import java.util.Optional;
 public class UrUrlService {
 
     private final UrlRepository urlRepository;
+    private final UrlHashGenerator urlHashGenerator;
 
-    // Constructor injection
     @Autowired
     public UrUrlService(UrlRepository urlRepository) {
         this.urlRepository = urlRepository;
+        this.urlHashGenerator = new UrlHashGenerator();
     }
 
     // Method to create and store a new short URL
@@ -31,37 +33,32 @@ public class UrUrlService {
             Url url = existingUrl.get();
             // If the URL exists, check if it's expired
             if (url.isExpired()) {
-                String newShortUrl = generateShortUrl();
-                url.setShortUrl(newShortUrl);
-                url.setCreated(LocalDateTime.now());
-                url.setTimeToLive(timeToLive);
+                String newShortCode = urlHashGenerator.generateShortCode();
+                url.setShortCode(newShortCode);
+                url.setExpirationDate(LocalDateTime.now().plusSeconds(timeToLive));
                 url.setClickCount(0);
                 return urlRepository.save(url);
             } else {
                 return url;
             }
         } else {
-            // If the original URL doesn't exist, create a new one
-            String shortUrl = generateShortUrl();
-            Url newUrl = new Url(originalUrl, shortUrl, timeToLive);
+            String shortCode = urlHashGenerator.generateShortCode();
+            Url newUrl = new Url(originalUrl, shortCode, LocalDateTime.now().plusSeconds(timeToLive));
             return urlRepository.save(newUrl);
         }
-    }
 
-    // Method to generate a unique short URL (you can customize this logic)
-    private String generateShortUrl() {
-        return java.util.UUID.randomUUID().toString().substring(0, 6);
+
     }
 
     // Method to find the original URL by short URL
-    public Optional<Url> findOriginalUrl(String shortUrl) {
-        return urlRepository.findByShortUrl(shortUrl);
+    public Optional<Url> findOriginalUrl(String shortCode) {
+        return urlRepository.findByShortCode(shortCode);
     }
 
     // Method to increment the click count for a short URL
     @Transactional
-    public void incrementClickCount(String shortUrl) {
-        Optional<Url> urlOptional = urlRepository.findByShortUrl(shortUrl);
+    public void incrementClickCount(String shortCode) {
+        Optional<Url> urlOptional = urlRepository.findByShortCode(shortCode);
         urlOptional.ifPresent(url -> {
             url.incrementClickCount();
             urlRepository.save(url);
@@ -72,7 +69,7 @@ public class UrUrlService {
     @Scheduled(fixedRate = 86400000)  // 24 hours interval
     public void cleanupExpiredUrls() {
         LocalDateTime now = LocalDateTime.now();
-        urlRepository.deleteAllExpiredUrls(now);
+        urlRepository.deleteExpiredUrls(now);
     }
 }
 

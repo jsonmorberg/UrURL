@@ -25,33 +25,28 @@ public class Url {
 
     // Shortened URL
     @Column(nullable = false, unique = true)
-    private String shortUrl;
-
-    // Date/Time of URL generation
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime created;
+    private String shortCode;
 
     // Postgres ejection date for shortened URL
-    private Long timeToLive;
+    private LocalDateTime expirationDate;
 
     // Clicks counter
     @Column(nullable = false)
     private long clickCount;
 
-    public Url(String originalUrl, String shortCode, Long timeToLive) {
+    public Url(String originalUrl, String shortCode, LocalDateTime timeToLive) {
         this.originalUrl = originalUrl;
-        this.shortUrl = shortCode;
-        this.created = LocalDateTime.now();
-        this.timeToLive = timeToLive;
+        this.shortCode = shortCode;
+        this.expirationDate = timeToLive;
         this.clickCount = 0;
     }
 
     public boolean isExpired() {
-        if (timeToLive == null) {
-            return false; // No TTL, never expires
+        if (expirationDate == null) {
+            return false;
         }
-        LocalDateTime expirationTime = created.plusSeconds(timeToLive);
-        return expirationTime.isBefore(LocalDateTime.now());
+
+        return expirationDate.isBefore(LocalDateTime.now());
     }
 
     public void incrementClickCount() {
