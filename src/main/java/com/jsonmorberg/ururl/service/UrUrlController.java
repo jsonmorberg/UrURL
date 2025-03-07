@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 @RestController
@@ -17,10 +18,17 @@ public class UrUrlController {
 
     // Endpoint to create a new short URL w/ optional time-to-live
     @PostMapping("/create")
-    public ResponseEntity<Url> createShortUrl(@RequestParam String originalUrl,
+    public ResponseEntity<?> createShortUrl(@RequestParam String originalUrl,
                                               @RequestParam(required = false) Long timeToLive) {
         if (timeToLive == null) {
             timeToLive = 7 * 24 * 60 * 60L; // default ttl at 7 days (stored as seconds)
+        }
+
+        try {
+            URI uri = new URI(originalUrl);
+            uri.toASCIIString();  // throws exception if url is malformed
+        } catch (URISyntaxException e) {
+            return ResponseEntity.badRequest().body("Invalid URL format.");
         }
 
         Url shortUrl = urlService.createShortUrl(originalUrl, timeToLive);

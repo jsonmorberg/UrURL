@@ -27,17 +27,17 @@ public class Url {
     @Column(nullable = false, unique = true)
     private String shortCode;
 
-    // Postgres ejection date for shortened URL
+    // Ejection date for shortened URL
     private LocalDateTime expirationDate;
 
     // Clicks counter
     @Column(nullable = false)
     private long clickCount;
 
-    public Url(String originalUrl, String shortCode, LocalDateTime timeToLive) {
+    public Url(String originalUrl, String shortCode, LocalDateTime expirationDate) {
         this.originalUrl = originalUrl;
         this.shortCode = shortCode;
-        this.expirationDate = timeToLive;
+        this.expirationDate = expirationDate;
         this.clickCount = 0;
     }
 
