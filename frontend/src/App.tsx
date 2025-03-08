@@ -18,12 +18,11 @@ function App() {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/urls', {
+      const response = await fetch(`http://localhost:8080/create?originalUrl=${encodeURIComponent(url)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ originalUrl: url }),
       });
 
       // Check for response status
