@@ -18,7 +18,8 @@ function App() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/create?originalUrl=${encodeURIComponent(url)}`, {
+      // Make the request to the backend (via the proxy)
+      const response = await fetch(`/create?originalUrl=${encodeURIComponent(url)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,44 +43,45 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1 className="text-4xl font-bold text-center py-4">URL Shortener</h1>
-      <div className="flex justify-center items-center">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-lg">Enter your URL:</label>
-            <input
-              type="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              className="p-2 border border-gray-300 rounded"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="p-2 bg-blue-500 text-white rounded"
-          >
-            Shorten URL
-          </button>
-        </form>
-      </div>
-      {error && <div className="text-red-500 text-center py-4">{error}</div>}
-      {shortenedUrl && (
-        <div className="text-center py-4">
-          <p>Your shortened URL:</p>
-          <a
-            href={`http://localhost:8080/${shortenedUrl}`}
-            className="text-blue-600"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {`http://localhost:8080/${shortenedUrl}`}
-          </a>
+      <div className="App">
+        <h1 className="text-4xl font-bold text-center py-4">URL Shortener</h1>
+        <div className="flex justify-center items-center">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-lg">Enter your URL:</label>
+              <input
+                  type="url"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  className="p-2 border border-gray-300 rounded"
+                  required
+              />
+            </div>
+            <button
+                type="submit"
+                className="p-2 bg-blue-500 text-white rounded"
+            >
+              Shorten URL
+            </button>
+          </form>
         </div>
-      )}
-    </div>
+        {error && <div className="text-red-500 text-center py-4">{error}</div>}
+        {shortenedUrl && (
+            <div className="text-center py-4">
+              <p>Your shortened URL:</p>
+              <a
+                  href={`http://localhost:8080/${shortenedUrl}`}
+                  className="text-blue-600"
+                  target="_blank"
+                  rel="noopener noreferrer"
+              >
+                {`http://localhost:8080/${shortenedUrl}`}
+              </a>
+            </div>
+        )}
+      </div>
   );
 }
 
 export default App;
+
