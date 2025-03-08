@@ -1,7 +1,7 @@
 package com.jsonmorberg.ururl.service;
 
 import com.jsonmorberg.ururl.model.Url;
-import com.jsonmorberg.ururl.model.UrlRepository;
+import com.jsonmorberg.ururl.utils.UrlRepository;
 import com.jsonmorberg.ururl.utils.UrlHashGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

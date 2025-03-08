@@ -1,4 +1,4 @@
-package com.jsonmorberg.ururl.utils;
+package com.jsonmorberg.ururl.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

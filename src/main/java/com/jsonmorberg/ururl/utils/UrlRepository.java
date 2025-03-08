@@ -1,5 +1,6 @@
-package com.jsonmorberg.ururl.model;
+package com.jsonmorberg.ururl.utils;
 
+import com.jsonmorberg.ururl.model.Url;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
