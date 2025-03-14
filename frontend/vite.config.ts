@@ -6,13 +6,14 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/create': 'http://localhost:8080', // Proxy the /create endpoint for shortening URLs
+      '/create': 'http://localhost:8080',
       '^/([a-zA-Z0-9]+)$': {
-        target: 'http://localhost:8080', // Proxy dynamic short URL requests (e.g., /Fy4iZV)
+        target: 'http://localhost:8080',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/([a-zA-Z0-9]+)$/, '/$1'), // Forward the short code to the backend
+        rewrite: (path) => path.replace(/^\/([a-zA-Z0-9]+)$/, '/$1'),
       },
     },
-    allowedHosts: ['ururl.xyz', 'localhost', '192.168.50.94'], // Allow your domain and other hosts
+    allowedHosts: ['ururl.xyz', 'localhost', '192.168.50.94'],
   },
 });
+
