@@ -1,6 +1,6 @@
-# UrUrl - My Custom URL Shortener
+# UrURL - My Custom URL Shortener
 
-UrUrl is a lightweight and efficient URL shortener designed for simplicity and speed. This project was inspired by the popular system design question of designing a URL shortener and was built to showcase backend engineering skills, focusing on scalability, caching strategies, and clean API design.
+UrURL is a lightweight and efficient URL shortener designed for simplicity and speed. This project was inspired by the popular system design question of designing a URL shortener and was built to showcase backend engineering skills, focusing on scalability, caching strategies, and clean API design.
 
 ## Features
 
@@ -20,7 +20,7 @@ UrUrl is a lightweight and efficient URL shortener designed for simplicity and s
 
 ## Project Goals
 
-UrUrl was designed to demonstrate:
+UrURL was designed to demonstrate:
 
 - Clean and maintainable code with a focus on backend development
 - Efficient caching strategies for high-performance web applications
@@ -35,4 +35,4 @@ UrUrl was designed to demonstrate:
 
 ## About This Project
 
-UrUrl was created as a personal project to enhance my portfolio and demonstrate my backend engineering skills. For questions or feedback, [feel free to reach out!](https://www.linkedin.com/in/jayson-morberg/)
+UrURL was created as a personal project to enhance my portfolio and demonstrate my backend engineering skills. For questions or feedback, [feel free to reach out!](https://www.linkedin.com/in/jayson-morberg/)
