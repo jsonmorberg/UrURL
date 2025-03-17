@@ -1,38 +1,22 @@
 # UrURL - My Custom URL Shortener
 
-UrURL is a lightweight and efficient URL shortener designed for simplicity and speed. This project was inspired by the popular system design question of designing a URL shortener and was built to showcase backend engineering skills, focusing on scalability, caching strategies, and clean API design.
+UrURL is a high-performance and lightweight URL shortener optimized for speed and simplicity. Taking the classic systems interview problem of implementing a URL shortener as its basis, this project showcases backend engineering skills focusing on scalability, caching mechanisms, and clean API design.
 
 ## Features
 
-- **Fast URL Redirection**: Quickly redirects users from short links to their original destinations.
-- **Click Tracking**: Tracks and updates click counts for each short URL in real-time.
-- **Database Integration**: Uses a robust relational database for data persistence.
-- **Caching for Performance**: Leverages Redis caching to reduce database load and improve response times.
-- **Minimalistic Frontend**: A lightweight yet aesthetically pleasing frontend built with Vite, React, and Tailwind CSS.
+- **Instant URL Redirection**: Redirects users from shortened URLs to their destination instantly.  
+- **Click Tracking**: Monitors and updates click counts on every short URL in real-time.  
+- **Database Integration**: Leverages a reliable relational database to ensure data persistence.  
+- **Performance Caching**: Leverages Redis caching to reduce database queries and increase response times.  
+- **Minimalistic Frontend**: A minimalist but pleasant frontend built with Vite, React, and Tailwind CSS.  
 
 ## Tech Stack
 
-- **Backend**: Java with Spring Boot
-- **Frontend**: Vite + React with Tailwind CSS
-- **Database**: Relational database with optimized schema design
-- **Caching**: Redis for improved performance
-- **Hosting**: Self-hosted using Proxmox with a dedicated reverse proxy for secure traffic handling
+- **Backend**: Java w/ Spring Boot  
+- **Frontend**: Vite + React w/ Tailwind CSS  
+- **Database**: PostgreSQL
+- **Caching**: Redis to increase performance  
+- **Hosting**: Hosted on a Proxmox server with its own reverse proxy to manage secure traffic  
 
-## Project Goals
-
-UrURL was designed to demonstrate:
-
-- Clean and maintainable code with a focus on backend development
-- Efficient caching strategies for high-performance web applications
-- Practical use of containerized environments (Proxmox)
-- Thoughtful integration of frontend design for enhanced user experience
-
-## Future Improvements
-
-- Enhanced analytics for URL performance insights
-- Improved admin interface for better URL management
-- Additional customization options for generated URLs
-
-## About This Project
-
-UrURL was created as a personal project to enhance my portfolio and demonstrate my backend engineering skills. For questions or feedback, [feel free to reach out!](https://www.linkedin.com/in/jayson-morberg/)
+## About This Project  
+UrURL was created as a personal endeavor to enhance my portfolio and showcase my backend development capabilities. If you have questions or feedback, [please feel free to reach out to me](https://www.linkedin.com/in/jayson-morberg/).
