@@ -1,4 +1,4 @@
-# UrURL - My Custom URL Shortener
+# [UrURL: Custom URL Shortner](https://ururl.xyz)
 
 UrURL is a high-performance and lightweight URL shortener optimized for speed and simplicity. Taking the classic systems interview problem of implementing a URL shortener as its basis, this project showcases backend engineering skills focusing on scalability, caching mechanisms, and clean API design.
 
